@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <app-attribute-list></app-attribute-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-table-list [tables]="requestBody.tables"></app-table-list>
+    </div>
+    <div class="col">
+      <app-settings [requestBody]="requestBody"></app-settings>
+    </div>
+  </div>
+</div>
+
+<app-modal-popup *ngIf="requestBody.path === undefined"></app-modal-popup>
