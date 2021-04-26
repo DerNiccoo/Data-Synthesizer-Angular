@@ -1,12 +1,96 @@
+<!--
 <div class="container">
   <div class="row">
-    <div class="col" *ngIf="selectedTable !== undefined">
+    <table *ngIf="selectedTable !== undefined">
+      <tr *ngFor="let attribute of selectedTable.attributes">
+        <app-attribute-item  [attribute]="attribute" (attributeSelected)="selectedAttribute = $event"></app-attribute-item>
+      </tr>
+    </table>
+    <!--<div class="col" *ngIf="selectedTable !== undefined">
       <div class="row" *ngFor="let attribute of selectedTable.attributes">
         <app-attribute-item [attribute]="attribute" (attributeSelected)="selectedAttribute = $event"></app-attribute-item>
       </div>
-    </div>
+    </div> ->
     <div class="col">
       <app-attribute-edit [attribute]="selectedAttribute" *ngIf="selectedAttribute !== undefined"></app-attribute-edit>
+    </div>
+  </div>
+</div>
+-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <mat-form-field appearance="fill">
+          <mat-label>Tabelle auswählen</mat-label>
+          <mat-select
+            [(value)]="selected"
+            (selectionChange)="selectedTableChange()"
+          >
+            <mat-option
+              *ngFor="let table of availableTables"
+              value="{{ table.name }}"
+              >{{ table.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row" *ngIf="selectedTable !== undefined">
+        <mat-form-field appearance="fill">
+          <mat-label>Attribut auswählen</mat-label>
+          <mat-select
+            [(value)]="selectedAttr"
+            (selectionChange)="selectedAttrChange()"
+          >
+            <mat-option
+              *ngFor="let attribute of selectedTable.attributes"
+              value="{{ attribute.name }}"
+              >{{ attribute.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row" *ngIf="selectedTable !== undefined">
+        <p>Auswählen der Attribute die generiert werden sollen</p>
+        <form [formGroup]="msAttrForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Generator Attribute</mat-label>
+            <mat-select
+              formControlName="attrType"
+              multiple
+              (selectionChange)="onSelectionChange($event)"
+            >
+              <mat-select-trigger>
+                {{ msAttrForm.controls.attrType.value ? msAttrForm.controls.attrType.value[0] : "" }}
+                <span
+                  *ngIf="msAttrForm.controls.attrType.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ msAttrForm.controls.attrType.value.length - 1 }}
+                  {{ msAttrForm.controls.attrType.value?.length === 2 ? "other" : "others" }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let attribute of selectedTable.attributes"
+                [value]="attribute.name"
+                >{{ attribute.name }}</mat-option
+              >
+              <mat-option
+                #allSelected
+                (click)="toggleAllSelection()"
+                [value]="0"
+                >All Attributes</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <app-attribute-edit
+        [attribute]="selectedAttribute"
+        *ngIf="selectedAttribute !== undefined"
+      ></app-attribute-edit>
     </div>
   </div>
 </div>

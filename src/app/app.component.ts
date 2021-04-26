@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RequestService } from './request.service';
 import { Attribute, Request, Table } from './shared/request.model';
 
 @Component({
@@ -6,23 +7,20 @@ import { Attribute, Request, Table } from './shared/request.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   requestBody: Request = new Request();
 
-  constructor() {
-    this.requestBody.path = "asd";
-    this.requestBody.tables = [
-      new Table("Player", "CTGAN", [
-        new Attribute('ID', 'number', false),
-        new Attribute('Player_name', 'string', false),
-        new Attribute('Weight', 'number', false),
-        new Attribute('Height', 'float', false),
-      ]),
-      new Table("Player_Attributes", "CTGAN", [
-        new Attribute('ID', 'number', false),
-        new Attribute('Overall', 'number', false),
-        new Attribute('Accuracy', 'number', false),
-      ])
-    ];
+  constructor(private requestService: RequestService) {
+
+  }
+
+  ngOnInit() {
+    this.requestService.setDemo();
+    this.requestBody = this.requestService.getRequest();
+    this.requestService.requestChanged.subscribe(
+      (requestBody: Request) => {
+        this.requestBody = requestBody;
+      }
+    );
   }
 }

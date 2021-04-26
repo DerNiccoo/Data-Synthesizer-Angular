@@ -1,0 +1,34 @@
+<div class="settings-table">
+  <form [formGroup]="msTableForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Generator Tabellen</mat-label>
+      <mat-select
+        formControlName="tableType"
+        multiple
+        (selectionChange)="onSelectionChange($event)"
+      >
+        <mat-select-trigger>
+          {{ msTableForm.controls.tableType.value ? msTableForm.controls.tableType.value[0] : "" }}
+          <span
+            *ngIf="msTableForm.controls.tableType.value?.length > 1"
+            class="example-additional-selection"
+          >
+            (+{{ msTableForm.controls.tableType.value.length - 1 }}
+            {{ msTableForm.controls.tableType.value?.length === 2 ? "other" : "others" }})
+          </span>
+        </mat-select-trigger>
+        <mat-option
+          *ngFor="let table of request.tables"
+          [value]="table.name"
+          >{{ table.name }}</mat-option
+        >
+        <mat-option
+          #allSelected
+          (click)="toggleAllSelection()"
+          [value]="0"
+          >All Tables</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </form>  
+</div>

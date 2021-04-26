@@ -5,6 +5,7 @@
   <div class="pull-right">
     <input
       #enabledCheckbox 
-      type="checkbox" id="flexSwitchCheckDefault" (change)="table.enabled = enabledCheckbox.checked"/>
+      type="checkbox" id="flexSwitchCheckDefault" (change)="table.enabled = enabledCheckbox.checked"
+      [checked]="table.enabled"/>
   </div>
 </a>

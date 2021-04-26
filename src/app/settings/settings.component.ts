@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Attribute, Request, Table } from '../shared/request.model';
+import { RequestService } from '../request.service';
+import { Request, Table } from '../shared/request.model';
 
 @Component({
   selector: 'app-settings',
@@ -7,11 +8,17 @@ import { Attribute, Request, Table } from '../shared/request.model';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  @Input() requestBody: Request;
+  requestBody: Request;
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
+    this.requestBody = this.requestService.getRequest();
+    this.requestService.requestChanged.subscribe(
+      (requestBody: Request) => {
+        this.requestBody = requestBody;
+      }
+    )
   }
 
   removeNonEnabled() {
@@ -38,6 +45,6 @@ export class SettingsComponent implements OnInit {
   onRun() {
     const request = this.removeNonEnabled();
     console.log(request);
-    console.log(this.requestBody);
   }
+
 }

@@ -1,4 +1,17 @@
-<a href="#" class="list-group-item clearfix" (click)="onSelected()">
+<td>
+  <input
+      #enabledCheckbox 
+      type="checkbox" id="flexSwitchCheckDefault" 
+      (change)="attribute.enabled = enabledCheckbox.checked"
+      [checked]="attribute.enabled === undefined ? false : attribute.enabled"/>
+</td>
+<td>
+  <a href='#' (click)="onSelected()">{{ attribute.name }}</a>
+</td>
+
+
+
+<!--<a href="#" class="list-group-item clearfix" (click)="onSelected()">
   <div class="pull-left">
     <h5 class="list-group-item-heading">{{ attribute.name }}</h5>
   </div>
@@ -9,4 +22,4 @@
       (change)="attribute.enabled = enabledCheckbox.checked"
       [checked]="attribute.enabled === undefined ? false : attribute.enabled"/>
   </div>
-</a>
+</a> -->

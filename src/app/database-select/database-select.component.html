@@ -1,0 +1,9 @@
+<div class="db-select">
+  <p>Einfügen des Dateipfades zur Datenbank. Unterstützte Formate: sql, csv</p>
+  <input type="text" class="form-control" id="pathInput" placeholder="Enter path to file" [(ngModel)]="path">
+  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()" type="submit">Submit</button>
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    <h4>Kritische Fehler!</h4>
+    <p>{{ errorMsg }}</p>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Attribute, Table } from '../shared/request.model';
+import { RequestService } from '../request.service';
+import { Attribute, Request, Table } from '../shared/request.model';
 
 @Component({
   selector: 'app-table-list',
@@ -7,10 +8,16 @@ import { Attribute, Table } from '../shared/request.model';
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  @Input() tables: Table[];
+  tables: Table[];
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
+    this.tables = this.requestService.getRequest().tables;
+    this.requestService.requestChanged.subscribe(
+      (requestBody: Request) => {
+        this.tables = requestBody.tables;
+      }
+    );
   }
 }

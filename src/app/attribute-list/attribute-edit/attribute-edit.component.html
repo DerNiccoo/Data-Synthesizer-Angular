@@ -6,9 +6,9 @@
     <div class="input-group">
       <select class="custom-select" (change)="onChange($event, 'dtype')">
         <option selected>Datentyp</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="id">ID</option>
+        <option value="numerical">Numerical</option>
+        <option value="categorical">Categorical</option>
       </select>
     </div>
   </div>
@@ -26,9 +26,14 @@
     <div class="input-group">
       <select class="custom-select" (change)="onChange($event, 'field_transform')">
         <option selected>Transformer</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="integer">integer</option>
+        <option value="float">float</option>
+        <option value="categorical">categorical</option>
+        <option value="categorical_fuzzy">categorical_fuzzy</option>
+        <option value="one_hot_encoding">one_hot_encoding</option>
+        <option value="label_encoding">label_encoding</option>
+        <option value="boolean">boolean</option>
+        <option value="datetime">datetime</option>
       </select>
     </div>
   </div>
@@ -36,15 +41,24 @@
     <div class="input-group">
       <select class="custom-select" (change)="onChange($event, 'field_distribution')">
         <option selected>Distribution</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="univariate">univariate</option>
+        <option value="parametric">parametric</option>
+        <option value="bounded">bounded</option>
+        <option value="semi_bounded">semi_bounded</option>
+        <option value="parametric_bounded">parametric_bounded</option>
+        <option value="parametric_semi_bounded">parametric_semi_bounded</option>
+        <option value="gaussian">gaussian</option>
+        <option value="gamma">gamma</option>
+        <option value="beta">beta</option>
+        <option value="student_t">student_t</option>
+        <option value="gaussian_kde">gaussian_kde</option>
+        <option value="truncated_gaussian">truncated_gaussian</option>
       </select>
     </div>
   </div>
   <div class="row form-group">
     <div class="input-group">
-      <select class="custom-select" (change)="onChange($event, 'field_distribution')">
+      <select class="custom-select">
         <option selected>Identifier</option>
         <option value="1">None</option>
         <option value="2">Semi-identifier</option>
