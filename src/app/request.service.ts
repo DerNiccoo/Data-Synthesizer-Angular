@@ -48,7 +48,7 @@ export class RequestService {
     this.requestChanged.emit(this.requestModel);
   }
 
-  setTable(name: string, attributes: Attribute[], model: string = 'TVAE') {
+  setTable(name: string, attributes: Attribute[], model: string = 'GaussianCopula') {
     this.requestModel.tables.push(new Table(name, model, attributes))
   }
 

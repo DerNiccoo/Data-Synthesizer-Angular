@@ -3,6 +3,12 @@
   <app-settings-table></app-settings-table>
   <app-settings-metric></app-settings-metric>
 
-  <button class="btn btn-success" (click)="onRun()">Run</button>
+  <hr>
+  <button class="btn btn-success" (click)="onRun()" *ngIf="isLoading === false">Run</button>
+  <div *ngIf="isLoading === true">
+    <p>{{ currentPhase }}</p>
+    <p>{{ currentTipp }}</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div> 
   
 </div>

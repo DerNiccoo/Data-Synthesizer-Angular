@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.requestService.setDemo();
+    //this.requestService.setDemo();
     this.requestBody = this.requestService.getRequest();
     this.requestService.requestChanged.subscribe(
       (requestBody: Request) => {

@@ -10,12 +10,11 @@ import { RequestService } from 'src/app/request.service';
 export class SettingsMetricComponent implements OnInit {
   metrics: string [] = ['CSTest', 'KSTest', 'BNLikelihood', 'BNLogLikelihood', 'GMLogLikelihood', 'LogisticDetection', 'SVCDetection', 'closeness', 'similarity']
   sdvq: string [] = ['CSTest', 'KSTest', 'BNLikelihood', 'BNLogLikelihood', 'GMLogLikelihood', 'LogisticDetection', 'SVCDetection']
-  metricForm = new FormControl(this.metrics);
+  metricForm = new FormControl();
   
   constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
-
   }
 
   onSelectionChange(event) {
@@ -35,6 +34,5 @@ export class SettingsMetricComponent implements OnInit {
     }
 
     this.requestService.setEvaluators(evaluators);
-    console.log(this.requestService.getRequest());
   }
 }
