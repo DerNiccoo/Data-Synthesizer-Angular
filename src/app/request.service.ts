@@ -38,6 +38,13 @@ export class RequestService {
     });
   }
 
+  setGenerator(generator: string) {
+    this.requestModel.tables.forEach(table => {
+      table.model = generator;
+    });
+    this.requestChanged.emit(this.requestModel);
+  }
+
   setRequest(reqeustBody: Request) {
     this.requestModel = reqeustBody;
     this.requestChanged.emit(this.requestModel);

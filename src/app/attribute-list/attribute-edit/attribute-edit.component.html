@@ -4,7 +4,7 @@
   </div>
   <div class="row form-group">
     <div class="input-group">
-      <select class="custom-select" (change)="onChange($event, 'dtype')">
+      <select class="custom-select" [(ngModel)] ='datatypeSelect' name='datatype' (change)="onChange($event, 'dtype')">
         <option selected>Datentyp</option>
         <option value="id">ID</option>
         <option value="numerical">Numerical</option>
@@ -14,7 +14,7 @@
   </div>
   <div class="row form-group">
     <div class="input-group">
-      <select class="custom-select" (change)="onChange($event, 'field_anonymize')">
+      <select class="custom-select" [(ngModel)] ='fakerSelect' name='faker' (change)="onChange($event, 'field_anonymize')">
         <option selected>Faker</option>
         <option value="name">Name</option>
         <option value="adress">Adress</option>
@@ -24,7 +24,7 @@
   </div>
   <div class="row form-group">
     <div class="input-group">
-      <select class="custom-select" (change)="onChange($event, 'field_transform')">
+      <select class="custom-select" [(ngModel)] ='transformerSelect' name='transformer' (change)="onChange($event, 'field_transform')">
         <option selected>Transformer</option>
         <option value="integer">integer</option>
         <option value="float">float</option>
@@ -39,7 +39,7 @@
   </div>
   <div class="row form-group">
     <div class="input-group">
-      <select class="custom-select" (change)="onChange($event, 'field_distribution')">
+      <select class="custom-select" [(ngModel)] ='distributionSelect' name='distribution' (change)="onChange($event, 'field_distribution')">
         <option selected>Distribution</option>
         <option value="univariate">univariate</option>
         <option value="parametric">parametric</option>

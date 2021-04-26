@@ -15,6 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SettingsMetricComponent } from './settings/settings-metric/settings-metric.component';
 import { DatabaseSelectComponent } from './database-select/database-select.component';
 import { SettingsTableComponent } from './settings/settings-table/settings-table.component';
+import { SettingsGeneratorComponent } from './settings/settings-generator/settings-generator.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SettingsTableComponent } from './settings/settings-table/settings-table
     SettingsMetricComponent,
     DatabaseSelectComponent,
     SettingsTableComponent,
+    SettingsGeneratorComponent,
   ],
   imports: [
     BrowserModule,

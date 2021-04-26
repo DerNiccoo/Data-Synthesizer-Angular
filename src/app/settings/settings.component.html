@@ -1,7 +1,16 @@
 <div class="settings">
 
-  <app-settings-table></app-settings-table>
-  <app-settings-metric></app-settings-metric>
+  <div class="row">
+    <div class="col">
+      <app-settings-table></app-settings-table>    
+    </div>
+    <div class="col">
+      <app-settings-generator></app-settings-generator>
+    </div>
+    <div class="col">
+      <app-settings-metric></app-settings-metric>
+    </div>
+  </div>
 
   <hr>
   <button class="btn btn-success" (click)="onRun()" *ngIf="isLoading === false">Run</button>

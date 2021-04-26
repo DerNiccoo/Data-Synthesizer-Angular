@@ -60,6 +60,7 @@ export class AttributeListComponent implements OnInit {
   }
 
   selectedAttrChange() {
+    this.selectedAttribute = undefined;
     this.requestModel.getRequest().tables.forEach(table => {
       if (table.name === this.selected) {
         table.attributes.forEach(attribute => {

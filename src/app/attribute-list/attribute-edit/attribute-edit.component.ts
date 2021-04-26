@@ -8,7 +8,23 @@ import { Attribute } from 'src/app/shared/request.model';
   styleUrls: ['./attribute-edit.component.css']
 })
 export class AttributeEditComponent implements OnInit {
-  @Input() attribute: Attribute;
+  private _attribute: Attribute;
+
+  datatypeSelect: string = 'Datentyp';
+  fakerSelect: string = 'Faker';
+  transformerSelect: string = 'Transformer';
+  distributionSelect: string = 'Distribution';
+
+  @Input()
+  set attribute(attr: Attribute) {
+    this._attribute = attr
+
+    this.datatypeSelect = attr.dtype == null ? 'Datentyp' : attr.dtype;
+    this.fakerSelect = attr.field_anonymize == null ? 'Faker' : attr.dtype;
+    this.transformerSelect = attr.field_transform == null ? 'Transformer' : attr.dtype;
+    this.distributionSelect = attr.field_distribution == null ? 'Distribution' : attr.dtype;
+  }
+  get attribute(): Attribute { return this._attribute; }
 
   constructor() { }
 
@@ -16,6 +32,11 @@ export class AttributeEditComponent implements OnInit {
   }
 
   onChange(selectBox, item) {
-    this.attribute[item] = selectBox.target.value;
+    let value = selectBox.target.value
+    if (value === 'Datentyp' || value === 'Faker' ||
+        value === 'Transformer' || value === 'Distribution' || value === 'Identifier'){
+      value = null;
+    }
+    this._attribute[item] = value;
   }
 }

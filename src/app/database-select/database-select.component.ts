@@ -9,7 +9,7 @@ import { Request } from '../shared/request.model';
   styleUrls: ['./database-select.component.css']
 })
 export class DatabaseSelectComponent implements OnInit {
-  path: String;
+  path: String = 'E:\\GitHub Repos\\Privacy\\Datasets\\HRD.csv';
   errorMsg: String = null;
 
   constructor(private requestService: RequestService, private http: HttpClient) { }
