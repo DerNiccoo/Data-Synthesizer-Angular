@@ -12,10 +12,15 @@ import { AttributeEditComponent } from './attribute-list/attribute-edit/attribut
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table'  
+import { MatExpansionModule } from '@angular/material/expansion';
 import { SettingsMetricComponent } from './settings/settings-metric/settings-metric.component';
 import { DatabaseSelectComponent } from './database-select/database-select.component';
 import { SettingsTableComponent } from './settings/settings-table/settings-table.component';
 import { SettingsGeneratorComponent } from './settings/settings-generator/settings-generator.component';
+import { SuggestionComponent } from './suggestion/suggestion.component';
+import { SuggestionItemComponent } from './suggestion/suggestion-item/suggestion-item.component';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,9 @@ import { SettingsGeneratorComponent } from './settings/settings-generator/settin
     DatabaseSelectComponent,
     SettingsTableComponent,
     SettingsGeneratorComponent,
+    SuggestionComponent,
+    SuggestionItemComponent,
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +45,8 @@ import { SettingsGeneratorComponent } from './settings/settings-generator/settin
     BrowserAnimationsModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatExpansionModule,
+    MatTableModule,
     ReactiveFormsModule 
   ],
   providers: [],

@@ -26,7 +26,7 @@ export class AttributeEditComponent implements OnInit {
   }
   get attribute(): Attribute { return this._attribute; }
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
   }
@@ -38,5 +38,6 @@ export class AttributeEditComponent implements OnInit {
       value = null;
     }
     this._attribute[item] = value;
+    this.requestService.setAttribute(this._attribute);
   }
 }

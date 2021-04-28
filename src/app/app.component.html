@@ -6,16 +6,59 @@
   </div>
   <hr>
   <div class="selected-db-config" *ngIf="requestBody.path !== undefined">
-    <div class="row">
-      <div class="col">
-        <app-attribute-list></app-attribute-list>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col">
-        <app-settings></app-settings>
-      </div>
-    </div>
+    
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Übersicht
+          </mat-panel-title>
+          <mat-panel-description>
+            Vereinfachte Darstellung aller erkannter und aktuell ausgewählter Einstellungen 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <app-overview></app-overview>
+        
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Empfehlungen
+          </mat-panel-title>
+          <mat-panel-description>
+            Automatisch erkannte Empfehlungen 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Einstellungen
+          </mat-panel-title>
+          <mat-panel-description>
+            Auswählen und Anpassen von: Attributen, Tabellen, Generatoren und Metriken  
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <div class="row">
+          <div class="col">
+            <app-attribute-list></app-attribute-list>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <app-settings></app-settings>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
   </div>
 </div>

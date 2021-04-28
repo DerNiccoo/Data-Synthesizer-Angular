@@ -64,4 +64,9 @@ export class RequestService {
     this.requestChanged.emit(this.requestModel);
   }
 
+  setAttribute(attr: Attribute) {
+    //Right now no clue how i could move the code from attribute-edit where i dirty change it to here...
+    this.requestChanged.emit(this.requestModel);
+  }
+
 }
