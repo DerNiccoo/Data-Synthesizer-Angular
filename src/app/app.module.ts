@@ -14,6 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table'  
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
 import { SettingsMetricComponent } from './settings/settings-metric/settings-metric.component';
 import { DatabaseSelectComponent } from './database-select/database-select.component';
 import { SettingsTableComponent } from './settings/settings-table/settings-table.component';
@@ -47,6 +50,9 @@ import { OverviewComponent } from './overview/overview.component';
     MatProgressBarModule,
     MatExpansionModule,
     MatTableModule,
+    MatCardModule,
+    MatButtonModule,
+    MatBadgeModule,
     ReactiveFormsModule 
   ],
   providers: [],

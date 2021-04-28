@@ -19,10 +19,10 @@ export class AttributeEditComponent implements OnInit {
   set attribute(attr: Attribute) {
     this._attribute = attr
 
-    this.datatypeSelect = attr.dtype == null ? 'Datentyp' : attr.dtype;
-    this.fakerSelect = attr.field_anonymize == null ? 'Faker' : attr.dtype;
-    this.transformerSelect = attr.field_transform == null ? 'Transformer' : attr.dtype;
-    this.distributionSelect = attr.field_distribution == null ? 'Distribution' : attr.dtype;
+    this.datatypeSelect = attr.dtype == null ? 'Datentyp' : attr.dtype.toLowerCase();
+    this.fakerSelect = attr.field_anonymize == null ? 'Faker' : attr.field_anonymize.toLowerCase();
+    this.transformerSelect = attr.field_transform == null ? 'Transformer' : attr.field_transform.toLowerCase();
+    this.distributionSelect = attr.field_distribution == null ? 'Distribution' : attr.field_distribution.toLowerCase();
   }
   get attribute(): Attribute { return this._attribute; }
 

@@ -1,1 +1,14 @@
-<p>suggestion-item works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ item.table }}.{{ item.attribute }}</mat-card-title>
+    <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ info_text }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onClickOK()">OK</button>
+    <button mat-button (click)="onClickDelete()">LÖSCHEN</button>
+    <button mat-button (click)="onClickIgnore()">IGNORIEREN</button>
+  </mat-card-actions>
+</mat-card>

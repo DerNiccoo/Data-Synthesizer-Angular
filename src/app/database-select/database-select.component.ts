@@ -25,6 +25,14 @@ export class DatabaseSelectComponent implements OnInit {
       this.http.get('http://127.0.0.1:8000/schema/' + this.path).subscribe(
         (result) => {          
           this.requestService.setRequest(result['metadata']);
+          this.requestService.setSuggestions([
+            {'id': 1, 'table': 'HRD', 'attribute': 'Employee_Name', 'category': 'Faker', 'solution': 'Name'},
+            {'id': 2, 'table': 'HRD', 'attribute': 'EmpID', 'category': 'Datatype', 'solution': 'ID'},
+            {'id': 3, 'table': 'HRD', 'attribute': 'MarriedID', 'category': 'Datatype', 'solution': 'ID'},
+            {'id': 4, 'table': 'HRD', 'attribute': 'GenderID', 'category': 'Datatype', 'solution': 'ID'},
+            {'id': 5, 'table': 'HRD', 'attribute': 'Zip', 'category': 'Faker', 'solution': 'Zip'},
+            {'id': 6, 'table': 'HRD', 'attribute': 'ManagerName', 'category': 'Faker', 'solution': 'Name'},
+          ]);
         }, error => {
           this.errorMsg = error.error.detail;
         }

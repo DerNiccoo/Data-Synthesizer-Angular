@@ -1,12 +1,15 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Attribute, Request, Table } from './shared/request.model';
+import { SuggestionModel } from './shared/suggestion.model';
 
 @Injectable({providedIn: 'root'})
 export class RequestService {
   requestChanged = new EventEmitter<Request>();
   tableSelected = new EventEmitter<Table>();
+  suggestionsChanged = new EventEmitter<SuggestionModel[]>();
 
   private requestModel: Request = new Request();
+  private suggestions: SuggestionModel[] = [];
 
   setDemo() {
     this.requestModel.path = "asd";
@@ -67,6 +70,46 @@ export class RequestService {
   setAttribute(attr: Attribute) {
     //Right now no clue how i could move the code from attribute-edit where i dirty change it to here...
     this.requestChanged.emit(this.requestModel);
+  }
+
+  setAttributeByFields(tableName: string, attrName: string, category: string, value: string) {
+    this.requestModel.tables.forEach(table => {
+      if (table.name === tableName) {
+        table.attributes.forEach(attr => {
+          if (attr.name === attrName) {
+            if (category === 'Datatype') {
+              attr.dtype = value;
+            } else if (category === 'Faker') {
+              attr.field_anonymize = value;
+            } else if (category === 'remove') {
+              attr.enabled = false;
+            }
+            return;
+          }
+        });
+      }
+    });
+
+    this.requestChanged.emit(this.requestModel);
+  }
+
+  setSuggestions(suggestions: SuggestionModel[]) {
+    this.suggestions = suggestions;
+    this.suggestionsChanged.emit(this.suggestions);
+  }
+
+  getSuggestions() {
+    return this.suggestions.slice();
+  }
+
+  removeSuggestion(suggestion: SuggestionModel) {
+    const index = this.suggestions.indexOf(suggestion);
+
+    if (index > -1) {
+      this.suggestions.splice(index, 1);
+    }
+
+    this.suggestionsChanged.emit(this.suggestions);
   }
 
 }

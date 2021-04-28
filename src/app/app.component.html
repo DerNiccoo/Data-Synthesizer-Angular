@@ -26,13 +26,16 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Empfehlungen
+            <span matBadge="{{ suggestions.length }}" matBadgeOverlap="false" matBadgeSize="small" *ngIf="suggestions.length > 0; else no_badge" class="matBadge">Empfehlungen</span>
+            <ng-template #no_badge><span>Empfehlungen</span></ng-template>
           </mat-panel-title>
           <mat-panel-description>
             Automatisch erkannte Empfehlungen 
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        
+        <app-suggestion></app-suggestion>
+
       </mat-expansion-panel>
     </mat-accordion>
     <mat-accordion>

@@ -31,7 +31,6 @@ export class OverviewComponent implements OnInit {
     this.requestService.requestChanged.subscribe((requestBody: Request) => {
       this.requestBody = requestBody;
       this.createTableData();
-      console.log('change detected!');
     });
 
     this.createTableData();
