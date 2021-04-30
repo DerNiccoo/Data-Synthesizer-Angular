@@ -24,6 +24,11 @@ import { SettingsGeneratorComponent } from './settings/settings-generator/settin
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { SuggestionItemComponent } from './suggestion/suggestion-item/suggestion-item.component';
 import { OverviewComponent } from './overview/overview.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { EvaluationSdvComponent } from './evaluation/evaluation-sdv/evaluation-sdv.component';
+import { EvaluationSimilarityComponent } from './evaluation/evaluation-similarity/evaluation-similarity.component';
+import { EvaluationClosenessComponent } from './evaluation/evaluation-closeness/evaluation-closeness.component';
+import { EvaluationAnonymityComponent } from './evaluation/evaluation-anonymity/evaluation-anonymity.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { OverviewComponent } from './overview/overview.component';
     SuggestionComponent,
     SuggestionItemComponent,
     OverviewComponent,
+    EvaluationComponent,
+    EvaluationSdvComponent,
+    EvaluationSimilarityComponent,
+    EvaluationClosenessComponent,
+    EvaluationAnonymityComponent,
   ],
   imports: [
     BrowserModule,

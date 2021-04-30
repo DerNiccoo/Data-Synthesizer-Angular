@@ -1,0 +1,14 @@
+<p>
+  Mit similarity wird die Ähnlichkeit zwischen zwei Datensätzen gemessen.
+  Dazu werden alle Zahlenwerte pro Spalte sortiert und in Buckets aufgeteilt. 
+  Im Anschluss wird verglichen wie genau die erzeugten Buckets die Originalen Werte wiederspiegeln.
+</p>
+
+<hr>
+
+<p>Metrik: {{ evaluation.metric }}</p>
+<p>Name: {{ evaluation.name }}</p>
+<p>Avg_bucket_similarity: {{ evaluation.result.Avg_bucket_similarity }}</p>
+<p>Max_bucket_similarity: {{ evaluation.result.Max_bucket_similarity }}</p>
+<p>Min_bucket_similarity: {{ evaluation.result.Min_bucket_similarity }}</p>
+<p>correlation_difference: {{ evaluation.result.correlation_difference }}</p>

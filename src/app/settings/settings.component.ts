@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { RequestService } from '../request.service';
+import { EvaluationModel } from '../shared/evaluation.model';
 import { Request, Table } from '../shared/request.model';
 
 @Component({
@@ -55,7 +56,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   onRun() {
     const request = this.removeNonEnabled();
 
-    this.currentPhase = "Generieren von neuen Daten.";
+    this.currentPhase = "1. Generieren von neuen Daten.";
     this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
 
     this.subscription = interval(5000).subscribe(count => {
@@ -66,8 +67,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.http
       .post('http://127.0.0.1:8000/training/', request)
       .subscribe((responseData) => {
-        console.log(responseData);
-        this.isLoading = false;
+        this.currentPhase = "2. Evaluieren der neuen Daten."
+
+        this.http
+          .post('http://127.0.0.1:8000/evaluate/', responseData)
+          .subscribe((evaluationData: EvaluationModel[]) => {
+            this.requestService.setEvaluations(evaluationData);
+            this.isLoading = false;
+          })
       });    
   }
 

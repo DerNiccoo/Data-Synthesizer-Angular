@@ -1,0 +1,18 @@
+<mat-accordion *ngFor="let source of evaluationsSources">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ source }}
+      </mat-panel-title>
+      <mat-panel-description>
+        Metriken und Auswertung mittels {{ source }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-evaluation-sdv *ngIf="source === 'sdv'"></app-evaluation-sdv>
+    <app-evaluation-closeness *ngIf="source === 'closeness'"></app-evaluation-closeness>
+    <app-evaluation-similarity *ngIf="source === 'similarity'"></app-evaluation-similarity>
+    <app-evaluation-anonymity *ngIf="source === 'anonymity'"></app-evaluation-anonymity>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<p *ngIf="evaluationsSources.length == 0">Es wurden bisher keine Tests ausgeführt.</p>

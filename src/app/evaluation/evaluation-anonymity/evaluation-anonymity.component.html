@@ -1,0 +1,34 @@
+<p>
+  In diesem Test wurde ein Hintergrundswissen Angriff gegen die Daten ausgeführt. 
+  Alle möglichen Kombinationen der Attribute aus den Quelldaten werden als Hintergrundswissen verwendet, um eine Deanonymisierung zu ermöglichen.
+  Es wird geprüft welche Attribute oder Kombination von Attributen am anfälligsten gegen ein Datenleak sind. 
+  Handelt es sich dabei um zu einfache Attribute sollten diese anders generiert werden. 
+</p>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="attributes">
+    <th mat-header-cell *matHeaderCellDef>Attributes</th>
+    <td mat-cell *matCellDef="let element">{{ element.attributes }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="identification_rate">
+    <th mat-header-cell *matHeaderCellDef>Identification_rate</th>
+    <td mat-cell *matCellDef="let element">{{ element.identification_rate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="identification_total">
+    <th mat-header-cell *matHeaderCellDef>Identification_total</th>
+    <td mat-cell *matCellDef="let element">{{ element.identification_total }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="success_rate">
+    <th mat-header-cell *matHeaderCellDef>Success_rate</th>
+    <td mat-cell *matCellDef="let element">{{ element.success_rate }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

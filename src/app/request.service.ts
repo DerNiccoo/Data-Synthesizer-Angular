@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
+import { EvaluationModel } from "./shared/evaluation.model";
 import { Attribute, Request, Table } from './shared/request.model';
 import { SuggestionModel } from './shared/suggestion.model';
 
@@ -7,9 +8,11 @@ export class RequestService {
   requestChanged = new EventEmitter<Request>();
   tableSelected = new EventEmitter<Table>();
   suggestionsChanged = new EventEmitter<SuggestionModel[]>();
+  evaluationsChanged = new EventEmitter<EvaluationModel[]>();
 
   private requestModel: Request = new Request();
   private suggestions: SuggestionModel[] = [];
+  private evaluations: EvaluationModel[] = [];
 
   setDemo() {
     this.requestModel.path = "asd";
@@ -78,9 +81,9 @@ export class RequestService {
         table.attributes.forEach(attr => {
           if (attr.name === attrName) {
             if (category === 'Datatype') {
-              attr.dtype = value;
+              attr.dtype = value.toLowerCase();
             } else if (category === 'Faker') {
-              attr.field_anonymize = value;
+              attr.field_anonymize = value.toLowerCase();
             } else if (category === 'remove') {
               attr.enabled = false;
             }
@@ -110,6 +113,39 @@ export class RequestService {
     }
 
     this.suggestionsChanged.emit(this.suggestions);
+  }
+
+  setEvaluations(evaluations: EvaluationModel[]) {
+    this.evaluations = evaluations;
+    this.evaluationsChanged.emit(this.evaluations);
+  }
+
+  getEvaluations() {
+    return this.evaluations.slice();
+  }
+
+  getEvaluationsSource() {
+    let result = [];
+
+    this.evaluations.forEach(evaluator => {
+      if (!result.includes(evaluator.source)) {
+        result.push(evaluator.source)
+      }
+    });
+
+    return result;
+  }
+
+  getEvaluationsBySource(source: string) {
+    let result: EvaluationModel[] = [];
+
+    this.evaluations.forEach(evaluator => {
+      if (evaluator.source === source) {
+        result.push(evaluator)
+      }
+    });
+
+    return result;
   }
 
 }

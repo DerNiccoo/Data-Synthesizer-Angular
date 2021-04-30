@@ -1,1 +1,2 @@
 <app-suggestion-item *ngFor="let item of suggestions" [item]="item"></app-suggestion-item>
+<p *ngIf="suggestions.length == 0">Keine weiteren Empfehlungen vorhanden.</p>

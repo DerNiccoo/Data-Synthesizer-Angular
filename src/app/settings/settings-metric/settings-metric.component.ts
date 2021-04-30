@@ -8,7 +8,7 @@ import { RequestService } from 'src/app/request.service';
   styleUrls: ['./settings-metric.component.css']
 })
 export class SettingsMetricComponent implements OnInit {
-  metrics: string [] = ['CSTest', 'KSTest', 'BNLikelihood', 'BNLogLikelihood', 'GMLogLikelihood', 'LogisticDetection', 'SVCDetection', 'closeness', 'similarity']
+  metrics: string [] = ['anonymity', 'sdveval', 'closeness', 'similarity']
   sdvq: string [] = ['CSTest', 'KSTest', 'BNLikelihood', 'BNLogLikelihood', 'GMLogLikelihood', 'LogisticDetection', 'SVCDetection']
   metricForm = new FormControl();
   

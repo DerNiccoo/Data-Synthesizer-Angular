@@ -1,0 +1,40 @@
+<p>Das SDV Framework implementiert State-of-the-art Algorithmen zur Datenerzeugung und wird für diese Verwendet. 
+  Zusätzlich bietet es einige Mathematische Verfahren mit denen die Qualität der Daten gemessen werden kann.</p>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="raw_score">
+    <th mat-header-cell *matHeaderCellDef>Score</th>
+    <td mat-cell *matCellDef="let element">{{ element.raw_score }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="normalized_score">
+    <th mat-header-cell *matHeaderCellDef>Norm_Score</th>
+    <td mat-cell *matCellDef="let element">{{ element.normalized_score }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="min_value">
+    <th mat-header-cell *matHeaderCellDef>Min_value</th>
+    <td mat-cell *matCellDef="let element">{{ element.min_value }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="max_value">
+    <th mat-header-cell *matHeaderCellDef>Max_value</th>
+    <td mat-cell *matCellDef="let element">{{ element.max_value }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="goal">
+    <th mat-header-cell *matHeaderCellDef>Goal</th>
+    <td mat-cell *matCellDef="let element">{{ element.goal }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
