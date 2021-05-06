@@ -42,7 +42,7 @@ export class OverviewComponent implements OnInit {
     this.requestBody.tables.forEach(table => {
       if (table.name === this.selectedTable) {
         table.attributes.forEach(attribute => {
-          table_data.push({name: attribute.name, datatype: attribute.dtype, faker: attribute.field_anonymize, transformer: attribute.field_transform, distribution: attribute.field_distribution, identifier: attribute.sensible})
+          table_data.push({name: attribute.name, datatype: attribute.dtype, faker: attribute.field_anonymize, transformer: attribute.field_transformer, distribution: attribute.field_distribution, identifier: attribute.sensible})
         });
       }
     });

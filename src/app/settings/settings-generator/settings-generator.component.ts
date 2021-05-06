@@ -17,6 +17,6 @@ export class SettingsGeneratorComponent implements OnInit {
   }
 
   onSelectionChange(event) {
-    console.log(event);
+    this.requestService.setGenerator(event.value);
   }
 }

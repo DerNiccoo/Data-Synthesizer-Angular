@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from './request.service';
+import { EvaluationContainer } from './shared/evaluation.model';
 import { Attribute, Request, Table } from './shared/request.model';
 import { SuggestionModel } from './shared/suggestion.model';
 
@@ -11,6 +12,7 @@ import { SuggestionModel } from './shared/suggestion.model';
 export class AppComponent implements OnInit{
   requestBody: Request = new Request();
   suggestions: SuggestionModel[] = [];
+  evaluations: EvaluationContainer[] = [];
 
   constructor(private requestService: RequestService) {
 
@@ -29,6 +31,13 @@ export class AppComponent implements OnInit{
     this.requestService.suggestionsChanged.subscribe(
       (suggestions: SuggestionModel[]) => {
         this.suggestions = suggestions;
+      }
+    );
+
+    this.evaluations = this.requestService.getEvaluations();
+    this.requestService.evaluationsChanged.subscribe(
+      (evaluations: EvaluationContainer[]) => {
+        this.evaluations = evaluations;
       }
     );
   }

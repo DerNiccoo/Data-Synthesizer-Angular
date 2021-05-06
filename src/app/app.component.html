@@ -63,17 +63,17 @@
       </mat-expansion-panel>
     </mat-accordion>
 
-    <mat-accordion>
+    <mat-accordion *ngFor="let evaluation of evaluations">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Evaluation
+            Evaluation: {{ evaluation.name }}
           </mat-panel-title>
           <mat-panel-description>
             Bewertung und Analyse der erzeugten Daten
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-evaluation></app-evaluation>
+        <app-evaluation tableName="{{ evaluation.name }}"></app-evaluation>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

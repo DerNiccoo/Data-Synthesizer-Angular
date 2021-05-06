@@ -14,7 +14,7 @@ export class Table {
 
 export class Attribute {
   public field_anonymize: string;
-  public field_transform: string;
+  public field_transformer: string;
   public field_distribution: string;
   public enabled: boolean;
 

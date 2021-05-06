@@ -21,7 +21,7 @@ export class AttributeEditComponent implements OnInit {
 
     this.datatypeSelect = attr.dtype == null ? 'Datentyp' : attr.dtype.toLowerCase();
     this.fakerSelect = attr.field_anonymize == null ? 'Faker' : attr.field_anonymize.toLowerCase();
-    this.transformerSelect = attr.field_transform == null ? 'Transformer' : attr.field_transform.toLowerCase();
+    this.transformerSelect = attr.field_transformer == null ? 'Transformer' : attr.field_transformer.toLowerCase();
     this.distributionSelect = attr.field_distribution == null ? 'Distribution' : attr.field_distribution.toLowerCase();
   }
   get attribute(): Attribute { return this._attribute; }

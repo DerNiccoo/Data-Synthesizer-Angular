@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { RequestService } from '../request.service';
-import { EvaluationModel } from '../shared/evaluation.model';
+import { EvaluationContainer, EvaluationModel } from '../shared/evaluation.model';
 import { Request, Table } from '../shared/request.model';
 
 @Component({
@@ -63,6 +63,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
     });
     
+    console.log(request);
+
     this.isLoading = true;
     this.http
       .post('http://127.0.0.1:8000/training/', request)
@@ -71,11 +73,34 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
         this.http
           .post('http://127.0.0.1:8000/evaluate/', responseData)
-          .subscribe((evaluationData: EvaluationModel[]) => {
+          .subscribe((evaluationData: EvaluationContainer[]) => {
+            console.log(evaluationData);
             this.requestService.setEvaluations(evaluationData);
             this.isLoading = false;
+            this.subscription.unsubscribe();
           })
       });    
+  }
+
+  onTestAll() {
+    const request = this.removeNonEnabled();
+
+    this.currentPhase = "1. Testen von allen Datensets in dem Ordner.";
+    this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
+
+    this.subscription = interval(5000).subscribe(count => {
+      this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
+    });
+    
+
+    this.isLoading = true;
+    this.http
+      .post('http://127.0.0.1:8000/evaluate/all', request)
+      .subscribe((evaluationData: EvaluationContainer[]) => {
+        this.requestService.setEvaluations(evaluationData);
+        this.isLoading = false;
+        this.subscription.unsubscribe();
+      });       
   }
 
   ngOnDestroy() {

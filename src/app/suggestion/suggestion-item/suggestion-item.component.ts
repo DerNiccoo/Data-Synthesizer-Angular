@@ -17,9 +17,13 @@ export class SuggestionItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.item.category === 'Faker') {
-      this.info_text = 'Quasi-identifer \''+ this.item.attribute +'\' erkannt, für mehr Sicherheit wird eine Generierung mittels Faker:'+ this.item.solution +' empfohlen.'
+      this.info_text = 'Quasi-identifer \''+ this.item.attribute +'\' erkannt, für mehr Sicherheit wird eine Generierung mittels Faker:'+ this.item.solution +' empfohlen.';
     } else if (this.item.category === 'Datatype') {
-      this.info_text = 'Anfälliger Datentyp erkannt, für eine bessere Datenqualität wird eine Generierung als Datatype:' + this.item.solution +' empfohlen.'
+      this.info_text = 'Anfälliger Datentyp erkannt, für eine bessere Datenqualität wird eine Generierung als Datatype:' + this.item.solution +' empfohlen.';
+    } else if (this.item.category === 'Setting') {
+      this.info_text = 'Aufgrund der gegebenen Quelldaten wird empfohlen die Einstellung: ' + this.item.solution + ' zu aktivieren.';
+    } else if (this.item.category === 'Transformer') {
+      this.info_text = 'Viele Kategorische Möglichkeiten entdeckt, für bessere Performance: ' + this.item.solution + ' verwenden.';
     }
   }
 

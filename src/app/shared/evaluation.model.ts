@@ -5,3 +5,8 @@ export class EvaluationModel {
   public name: string;
   public result;
 }
+
+export class EvaluationContainer {
+  public name: string;
+  public evaluations: EvaluationModel[];
+}

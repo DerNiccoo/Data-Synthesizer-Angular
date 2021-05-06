@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { EvaluationModel } from "./shared/evaluation.model";
+import { EvaluationContainer, EvaluationModel } from "./shared/evaluation.model";
 import { Attribute, Request, Table } from './shared/request.model';
 import { SuggestionModel } from './shared/suggestion.model';
 
@@ -8,11 +8,11 @@ export class RequestService {
   requestChanged = new EventEmitter<Request>();
   tableSelected = new EventEmitter<Table>();
   suggestionsChanged = new EventEmitter<SuggestionModel[]>();
-  evaluationsChanged = new EventEmitter<EvaluationModel[]>();
+  evaluationsChanged = new EventEmitter<EvaluationContainer[]>();
 
   private requestModel: Request = new Request();
   private suggestions: SuggestionModel[] = [];
-  private evaluations: EvaluationModel[] = [];
+  private evaluations: EvaluationContainer[] = [];
 
   setDemo() {
     this.requestModel.path = "asd";
@@ -84,6 +84,8 @@ export class RequestService {
               attr.dtype = value.toLowerCase();
             } else if (category === 'Faker') {
               attr.field_anonymize = value.toLowerCase();
+            } else if (category === 'Transformer') {
+              attr.field_transformer = value.toLowerCase();
             } else if (category === 'remove') {
               attr.enabled = false;
             }
@@ -115,7 +117,7 @@ export class RequestService {
     this.suggestionsChanged.emit(this.suggestions);
   }
 
-  setEvaluations(evaluations: EvaluationModel[]) {
+  setEvaluations(evaluations: EvaluationContainer[]) {
     this.evaluations = evaluations;
     this.evaluationsChanged.emit(this.evaluations);
   }
@@ -124,10 +126,18 @@ export class RequestService {
     return this.evaluations.slice();
   }
 
-  getEvaluationsSource() {
+  getEvaluationsSource(tableName: string) {
     let result = [];
 
+    let tableEvaluators: EvaluationModel[];
+    
     this.evaluations.forEach(evaluator => {
+      if (evaluator.name == tableName) {
+        tableEvaluators = evaluator.evaluations;
+      }
+    });
+
+    tableEvaluators.forEach(evaluator => {
       if (!result.includes(evaluator.source)) {
         result.push(evaluator.source)
       }
@@ -136,10 +146,17 @@ export class RequestService {
     return result;
   }
 
-  getEvaluationsBySource(source: string) {
+  getEvaluationsBySource(tableName: string, source: string) {
     let result: EvaluationModel[] = [];
 
+    let tableEvaluators: EvaluationModel[];
     this.evaluations.forEach(evaluator => {
+      if (evaluator.name == tableName) {
+        tableEvaluators = evaluator.evaluations;
+      }
+    });
+
+    tableEvaluators.forEach(evaluator => {
       if (evaluator.source === source) {
         result.push(evaluator)
       }

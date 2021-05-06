@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
-import { EvaluationModel } from '../shared/evaluation.model';
+import { EvaluationContainer, EvaluationModel } from '../shared/evaluation.model';
 
 @Component({
   selector: 'app-evaluation',
@@ -8,18 +8,20 @@ import { EvaluationModel } from '../shared/evaluation.model';
   styleUrls: ['./evaluation.component.css']
 })
 export class EvaluationComponent implements OnInit {
-  evaluations: EvaluationModel[];
+  evaluations: EvaluationContainer[];
   evaluationsSources: string[];
+
+  @Input() tableName: string;
 
   constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
     this.evaluations = this.requestService.getEvaluations();
-    this.evaluationsSources = this.requestService.getEvaluationsSource();
+    this.evaluationsSources = this.requestService.getEvaluationsSource(this.tableName);
     this.requestService.evaluationsChanged.subscribe(
-      (evaluations: EvaluationModel[]) => {
+      (evaluations: EvaluationContainer[]) => {
         this.evaluations = evaluations;
-        this.evaluationsSources = this.requestService.getEvaluationsSource();
+        this.evaluationsSources = this.requestService.getEvaluationsSource(this.tableName);
       }
     );
   }

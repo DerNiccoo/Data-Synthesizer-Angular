@@ -8,10 +8,10 @@
         Metriken und Auswertung mittels {{ source }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <app-evaluation-sdv *ngIf="source === 'sdv'"></app-evaluation-sdv>
-    <app-evaluation-closeness *ngIf="source === 'closeness'"></app-evaluation-closeness>
-    <app-evaluation-similarity *ngIf="source === 'similarity'"></app-evaluation-similarity>
-    <app-evaluation-anonymity *ngIf="source === 'anonymity'"></app-evaluation-anonymity>
+    <app-evaluation-sdv *ngIf="source === 'sdv'" tableName="{{ tableName }}"></app-evaluation-sdv>
+    <app-evaluation-closeness *ngIf="source === 'closeness'" tableName="{{ tableName }}"></app-evaluation-closeness>
+    <app-evaluation-similarity *ngIf="source === 'similarity'" tableName="{{ tableName }}"></app-evaluation-similarity>
+    <app-evaluation-anonymity *ngIf="source === 'anonymity'" tableName="{{ tableName }}"></app-evaluation-anonymity>
   </mat-expansion-panel>
 </mat-accordion>
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/request.service';
 import { EvaluationModel } from 'src/app/shared/evaluation.model';
 
@@ -19,19 +19,22 @@ export interface SDVElement {
 export class EvaluationSdvComponent implements OnInit {
   evaluations: EvaluationModel[];
 
+  @Input() tableName: string;
+
   displayedColumns: string[] = ['name', 'raw_score', 'normalized_score', 'min_value', 'max_value', 'goal'];
   dataSource;
 
   constructor(private requestService: RequestService, private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.evaluations = this.requestService.getEvaluationsBySource('sdv');
+    this.evaluations = this.requestService.getEvaluationsBySource(this.tableName, 'sdv');
     this.requestService.evaluationsChanged.subscribe((evaluations: EvaluationModel[]) => {
       this.evaluations = evaluations;
       this.createTableData();
     });
 
     this.createTableData();
+    console.log("Overall " + this.tableName);
   }
 
   createTableData() {

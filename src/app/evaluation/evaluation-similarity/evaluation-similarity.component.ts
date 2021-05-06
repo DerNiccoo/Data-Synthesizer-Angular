@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/request.service';
 import { EvaluationModel } from 'src/app/shared/evaluation.model';
 
@@ -10,12 +10,14 @@ import { EvaluationModel } from 'src/app/shared/evaluation.model';
 export class EvaluationSimilarityComponent implements OnInit {
   evaluation: EvaluationModel;
 
+  @Input() tableName: string;
+
   constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {
-    this.evaluation = this.requestService.getEvaluationsBySource('similarity')[0];
+    this.evaluation = this.requestService.getEvaluationsBySource(this.tableName, 'similarity')[0];
     this.requestService.evaluationsChanged.subscribe((evaluations: EvaluationModel[]) => {
-      this.evaluation = this.requestService.getEvaluationsBySource('similarity')[0];
+      this.evaluation = this.requestService.getEvaluationsBySource(this.tableName, 'similarity')[0];
     });
   }
 

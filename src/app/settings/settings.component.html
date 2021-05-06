@@ -14,6 +14,7 @@
 
   <hr>
   <button class="btn btn-success" (click)="onRun()" *ngIf="isLoading === false">Run</button>
+  <button class="btn btn-primary" (click)="onTestAll()" *ngIf="isLoading === false">Test all</button>
   <div *ngIf="isLoading === true">
     <p>{{ currentPhase }}</p>
     <p>{{ currentTipp }}</p>
