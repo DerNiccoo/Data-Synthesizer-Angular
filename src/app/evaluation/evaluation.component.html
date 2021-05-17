@@ -1,3 +1,17 @@
+<mat-accordion *ngIf="evaluationsSources.length > 0">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Übersucht
+      </mat-panel-title>
+      <mat-panel-description>
+        Zusammenfassende Übersicht der Ergebnisse
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-evaluation-overview tableName="{{ tableName }}"></app-evaluation-overview>
+  </mat-expansion-panel>
+</mat-accordion>
+
 <mat-accordion *ngFor="let source of evaluationsSources">
   <mat-expansion-panel>
     <mat-expansion-panel-header>

@@ -29,6 +29,7 @@ import { EvaluationSdvComponent } from './evaluation/evaluation-sdv/evaluation-s
 import { EvaluationSimilarityComponent } from './evaluation/evaluation-similarity/evaluation-similarity.component';
 import { EvaluationClosenessComponent } from './evaluation/evaluation-closeness/evaluation-closeness.component';
 import { EvaluationAnonymityComponent } from './evaluation/evaluation-anonymity/evaluation-anonymity.component';
+import { EvaluationOverviewComponent } from './evaluation/evaluation-overview/evaluation-overview.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EvaluationAnonymityComponent } from './evaluation/evaluation-anonymity/
     EvaluationSimilarityComponent,
     EvaluationClosenessComponent,
     EvaluationAnonymityComponent,
+    EvaluationOverviewComponent,
   ],
   imports: [
     BrowserModule,

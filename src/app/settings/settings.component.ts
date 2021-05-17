@@ -59,9 +59,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.currentPhase = "1. Generieren von neuen Daten.";
     this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
 
-    this.subscription = interval(5000).subscribe(count => {
+    /*this.subscription = interval(5000).subscribe(count => {
       this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
-    });
+    });*/
     
     console.log(request);
 
@@ -77,7 +77,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
             console.log(evaluationData);
             this.requestService.setEvaluations(evaluationData);
             this.isLoading = false;
-            this.subscription.unsubscribe();
+            //this.subscription.unsubscribe();
           })
       });    
   }
@@ -96,6 +96,26 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.http
       .post('http://127.0.0.1:8000/evaluate/all', request)
+      .subscribe((evaluationData: EvaluationContainer[]) => {
+        this.requestService.setEvaluations(evaluationData);
+        this.isLoading = false;
+        this.subscription.unsubscribe();
+      });       
+  }
+
+  onDebug() {
+    const request = this.removeNonEnabled();
+
+    this.currentPhase = "1. Debuggen aller möglichen Kombinationen. ACHTUNG: DAUERT!!!!";
+    this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
+
+    this.subscription = interval(5000).subscribe(count => {
+      this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
+    });
+    
+    this.isLoading = true;
+    this.http
+      .post('http://127.0.0.1:8000/debug', request)
       .subscribe((evaluationData: EvaluationContainer[]) => {
         this.requestService.setEvaluations(evaluationData);
         this.isLoading = false;
