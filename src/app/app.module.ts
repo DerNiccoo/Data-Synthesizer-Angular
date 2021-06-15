@@ -30,6 +30,7 @@ import { EvaluationSimilarityComponent } from './evaluation/evaluation-similarit
 import { EvaluationClosenessComponent } from './evaluation/evaluation-closeness/evaluation-closeness.component';
 import { EvaluationAnonymityComponent } from './evaluation/evaluation-anonymity/evaluation-anonymity.component';
 import { EvaluationOverviewComponent } from './evaluation/evaluation-overview/evaluation-overview.component';
+import { EvaluationBgattackComponent } from './evaluation/evaluation-bgattack/evaluation-bgattack.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { EvaluationOverviewComponent } from './evaluation/evaluation-overview/ev
     EvaluationClosenessComponent,
     EvaluationAnonymityComponent,
     EvaluationOverviewComponent,
+    EvaluationBgattackComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,11 +27,15 @@ export class EvaluationOverviewComponent implements OnInit {
   }
 
   set_values() {
-    this.evaluations[0].evaluations.forEach(evalv => {
-      if (evalv.metric === 'Wasserstein') {
-        this.wasserstein = evalv.result['Score']
+    this.evaluations.forEach(tables => {
+      if (tables.name === this.tableName) {
+        tables.evaluations.forEach(evalv => {
+          if (evalv.metric === 'Wasserstein') {
+            this.wasserstein = evalv.result['Score']
+          }
+        });  
       }
-    });    
+    });
   }
 
 }

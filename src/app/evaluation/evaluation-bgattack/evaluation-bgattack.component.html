@@ -1,0 +1,45 @@
+<p>Risiko Level: {{ risk_level }}</p>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="attribute">
+    <th mat-header-cell *matHeaderCellDef>Attribute</th>
+    <td mat-cell *matCellDef="let element">{{ element.attribute }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="accuracy">
+    <th mat-header-cell *matHeaderCellDef>Accuracy</th>
+    <td mat-cell *matCellDef="let element">{{ element.accuracy }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Number</th>
+    <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="total_accuracy">
+    <th mat-header-cell *matHeaderCellDef>Total Accuracy</th>
+    <td mat-cell *matCellDef="let element">{{ element.total_accuracy }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fields">
+    <th mat-header-cell *matHeaderCellDef>Fields</th>
+    <td mat-cell *matCellDef="let element">{{ element.fields }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="risk_level">
+    <th mat-header-cell *matHeaderCellDef>Risk_Level</th>
+    <td mat-cell *matCellDef="let element">{{ element.risk_level }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="risk">
+    <th mat-header-cell *matHeaderCellDef>Risiko</th>
+    <td mat-cell *matCellDef="let element">{{ element.risk }}</td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

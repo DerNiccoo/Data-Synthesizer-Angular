@@ -74,6 +74,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.http
           .post('http://127.0.0.1:8000/evaluate/', responseData)
           .subscribe((evaluationData: EvaluationContainer[]) => {
+            console.log('Evaluation result:');
             console.log(evaluationData);
             this.requestService.setEvaluations(evaluationData);
             this.isLoading = false;

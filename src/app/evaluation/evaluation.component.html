@@ -26,6 +26,7 @@
     <app-evaluation-closeness *ngIf="source === 'closeness'" tableName="{{ tableName }}"></app-evaluation-closeness>
     <app-evaluation-similarity *ngIf="source === 'similarity'" tableName="{{ tableName }}"></app-evaluation-similarity>
     <app-evaluation-anonymity *ngIf="source === 'anonymity'" tableName="{{ tableName }}"></app-evaluation-anonymity>
+    <app-evaluation-bgattack *ngIf="source === 'background_anonymity'" tableName="{{ tableName }}"></app-evaluation-bgattack>
   </mat-expansion-panel>
 </mat-accordion>
 
