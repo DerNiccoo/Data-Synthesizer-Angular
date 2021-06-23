@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
 import { interval, Subscription } from 'rxjs';
 import { RequestService } from '../request.service';
 import { EvaluationContainer, EvaluationModel } from '../shared/evaluation.model';
@@ -13,6 +14,10 @@ import { Request, Table } from '../shared/request.model';
 export class SettingsComponent implements OnInit, OnDestroy {
   requestBody: Request;
   isLoading: boolean = false;
+  errorMsg: String = null;
+  epochNumber: number = 300;
+  dataAmount: number = 1;
+  dataFactor: number = 1;
 
   private subscription: Subscription;
   currentTipp: string;
@@ -36,6 +41,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
     request.path = this.requestBody.path;
     request.tables = [];
     request.evaluators = this.requestBody.evaluators;
+    request.dataAmount = this.dataAmount;
+    request.dataFactor = this.dataFactor;
+    request.epoch = this.epochNumber;
 
     this.requestBody.tables.forEach((table) => {
       if (table.enabled) {
@@ -55,6 +63,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   onRun() {
     const request = this.removeNonEnabled();
+    this.errorMsg = null;
 
     this.currentPhase = "1. Generieren von neuen Daten.";
     this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
@@ -79,12 +88,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
             this.requestService.setEvaluations(evaluationData);
             this.isLoading = false;
             //this.subscription.unsubscribe();
+          },
+          (error) => {
+            this.isLoading = false;
+            this.errorMsg = error.error.detail;
           })
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMsg = error.error.detail;
       });    
   }
 
   onTestAll() {
     const request = this.removeNonEnabled();
+    this.errorMsg = null;
 
     this.currentPhase = "1. Testen von allen Datensets in dem Ordner.";
     this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
@@ -101,11 +119,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.requestService.setEvaluations(evaluationData);
         this.isLoading = false;
         this.subscription.unsubscribe();
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMsg = error.error.detail;
       });       
   }
 
   onDebug() {
     const request = this.removeNonEnabled();
+    this.errorMsg = null;
 
     this.currentPhase = "1. Debuggen aller möglichen Kombinationen. ACHTUNG: DAUERT!!!!";
     this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
@@ -121,11 +144,26 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.requestService.setEvaluations(evaluationData);
         this.isLoading = false;
         this.subscription.unsubscribe();
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMsg = error.error.detail;
       });       
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  
+
+  onEpochChange(event: MatSliderChange) {
+    this.epochNumber = event.value;
+  }
+ 
+  onAmountChange(event: MatSliderChange) {
+    this.dataAmount = event.value;
+  }
+
+  onFactorChange(event: MatSliderChange) {
+    this.dataFactor = event.value;
+  }
 }

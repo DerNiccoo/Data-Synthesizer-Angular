@@ -2,6 +2,9 @@ export class Request {
   public path: string;
   public tables: Table[];
   public evaluators; //TODO: Spinner fragen wie man hier in TS die Daten angibt 
+  public epoch: number;
+  public dataAmount: number;
+  public dataFactor: number;
 
   constructor() {}
 }

@@ -9,7 +9,7 @@ import { Request } from '../shared/request.model';
   styleUrls: ['./database-select.component.css'],
 })
 export class DatabaseSelectComponent implements OnInit {
-  path: String = 'E:\\GitHub Repos\\Masterarbeit\\Datasets\\HRD.csv';
+  path: String = localStorage.getItem('db-path') || 'E:\\GitHub Repos\\Masterarbeit\\Datasets\\HRD.csv';
   errorMsg: String = null;
 
   constructor(
@@ -28,6 +28,7 @@ export class DatabaseSelectComponent implements OnInit {
         (result) => {
           this.requestService.setRequest(result['metadata']);
           this.requestService.setSuggestions(result['suggestions']);
+          localStorage.setItem('db-path', this.path.toString());
         },
         (error) => {
           this.errorMsg = error.error.detail;

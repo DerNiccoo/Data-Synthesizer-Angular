@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSliderModule } from '@angular/material/slider';
 import { SettingsMetricComponent } from './settings/settings-metric/settings-metric.component';
 import { DatabaseSelectComponent } from './database-select/database-select.component';
 import { SettingsTableComponent } from './settings/settings-table/settings-table.component';
@@ -64,6 +65,7 @@ import { EvaluationBgattackComponent } from './evaluation/evaluation-bgattack/ev
     MatProgressBarModule,
     MatExpansionModule,
     MatTableModule,
+    MatSliderModule,
     MatCardModule,
     MatButtonModule,
     MatBadgeModule,

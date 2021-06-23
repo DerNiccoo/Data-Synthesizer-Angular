@@ -11,15 +11,33 @@
       <app-settings-metric></app-settings-metric>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <p>Epochen: {{epochNumber}}</p>
+      <mat-slider min="100" max="5000" step="10" value="300" (input)="onEpochChange($event)"></mat-slider>
+    </div>
+    <div class="col">
+      <p>Datenmengenmultiplikator: {{ dataAmount }}</p>
+      <mat-slider min="0.1" max="10" step="0.1" value="1" (input)="onAmountChange($event)"></mat-slider>
+    </div>
+    <div class="col">
+      <p>Datenbasisfaktor: {{ dataFactor }}</p>
+      <mat-slider min="0.01" max="1" step="0.01" value="1" (input)="onFactorChange($event)"></mat-slider>
+    </div>
+  </div>
 
   <hr>
   <button class="btn btn-success" (click)="onRun()">Run</button>
   <button class="btn btn-primary" (click)="onTestAll()">Test all</button>
   <button class="btn btn-warning" (click)="onDebug()">Debug</button>
-  <div *ngIf="isLoading === true">
+  <div *ngIf="isLoading === true" style="margin-top: 20px;">
     <p>{{ currentPhase }}</p>
     <p>{{ currentTipp }}</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div> 
-  
+  <div class="alert alert-danger" *ngIf="errorMsg" style="margin-top: 20px;">
+    <h4>Kritische Fehler!</h4>
+    <p>{{ errorMsg }}</p>
+  </div>
+
 </div>
