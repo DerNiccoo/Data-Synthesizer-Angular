@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RequestService } from '../request.service';
 import { Request } from '../shared/request.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-database-select',
@@ -24,7 +25,7 @@ export class DatabaseSelectComponent implements OnInit {
     this.requestService.setRequest(new Request());
 
     if (this.path) {
-      this.http.get('http://127.0.0.1:8000/schema/' + this.path).subscribe(
+      this.http.get(environment.baseUrl + '/schema/' + this.path).subscribe(
         (result) => {
           this.requestService.setRequest(result['metadata']);
           this.requestService.setSuggestions(result['suggestions']);
@@ -43,7 +44,7 @@ export class DatabaseSelectComponent implements OnInit {
     this.requestService.setRequest(new Request());
 
     if (this.path) {
-      this.http.get('http://127.0.0.1:8000/load/' + this.path).subscribe(
+      this.http.get(environment.baseUrl + '/load/' + this.path).subscribe(
         (result) => {
           this.requestService.setRequest(result['metadata']);
           this.requestService.setSuggestions(result['suggestions']);
@@ -61,7 +62,7 @@ export class DatabaseSelectComponent implements OnInit {
   onKill() {
     this.errorMsg = null;
 
-    this.http.get('http://127.0.0.1:8001/reset').subscribe(
+    this.http.get(environment.killUrl + '/reset').subscribe(
       (result) => {
         console.log("killed")
       },

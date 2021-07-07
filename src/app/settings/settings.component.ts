@@ -5,6 +5,7 @@ import { interval, Subscription } from 'rxjs';
 import { RequestService } from '../request.service';
 import { EvaluationContainer, EvaluationModel } from '../shared/evaluation.model';
 import { Request, Table } from '../shared/request.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-settings',
@@ -80,12 +81,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
     this.http
-      .post('http://127.0.0.1:8000/training/', request)
+      .post(environment.baseUrl + '/training/', request)
       .subscribe((responseData) => {
         this.currentPhase = "2. Evaluieren der neuen Daten."
 
         this.http
-          .post('http://127.0.0.1:8000/evaluate/', responseData)
+          .post(environment.baseUrl + '/evaluate/', responseData)
           .subscribe((evaluationData: EvaluationContainer[]) => {
             console.log('Evaluation result:');
             console.log(evaluationData);
@@ -118,7 +119,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
     this.http
-      .post('http://127.0.0.1:8000/evaluate/all', request)
+      .post(environment.baseUrl + '/evaluate/all', request)
       .subscribe((evaluationData: EvaluationContainer[]) => {
         this.requestService.setEvaluations(evaluationData);
         this.isLoading = false;
@@ -143,7 +144,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     
     this.isLoading = true;
     this.http
-      .post('http://127.0.0.1:8000/debug', request)
+      .post(environment.baseUrl + '/debug', request)
       .subscribe((evaluationData: EvaluationContainer[]) => {
         this.requestService.setEvaluations(evaluationData);
         this.isLoading = false;
@@ -166,7 +167,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     const params = new HttpParams().append('path', this.requestService.getLoadedPath()).append('amount', '' + request.dataAmount);
 
     this.http
-      .get('http://127.0.0.1:8000/loadedModel/' + this.requestService.getLoadedPath() + '/' + request.dataAmount)
+      .get(environment.baseUrl + '/loadedModel/' + this.requestService.getLoadedPath() + '/' + request.dataAmount)
       .subscribe((responseData) => {
         console.log(responseData);
       },
