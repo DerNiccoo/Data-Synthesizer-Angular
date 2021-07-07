@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { interval, Subscription } from 'rxjs';
@@ -19,6 +19,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   dataAmount: number = 1;
   dataFactor: number = 1;
 
+  loadedModel: boolean = false;
+
   private subscription: Subscription;
   currentTipp: string;
   currentPhase: string;
@@ -31,8 +33,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestBody = this.requestService.getRequest();
+    this.loadedModel = this.requestService.getLoadedModel();
     this.requestService.requestChanged.subscribe((requestBody: Request) => {
       this.requestBody = requestBody;
+      this.loadedModel = this.requestService.getLoadedModel();
     });
   }
 
@@ -149,6 +153,27 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.errorMsg = error.error.detail;
       });       
+  }
+
+  onLoadedModel() {
+    const request = this.removeNonEnabled();
+    this.errorMsg = null;
+
+    this.currentPhase = "1. Generieren von <b>weiteren</b> Daten.";
+    this.currentTipp = this.loadingTipps[Math.floor(Math.random() * this.loadingTipps.length)];
+
+    const headers = new HttpHeaders();
+    const params = new HttpParams().append('path', this.requestService.getLoadedPath()).append('amount', '' + request.dataAmount);
+
+    this.http
+      .get('http://127.0.0.1:8000/loadedModel/' + this.requestService.getLoadedPath() + '/' + request.dataAmount)
+      .subscribe((responseData) => {
+        console.log(responseData);
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMsg = error.error.detail;
+      });  
   }
 
   ngOnDestroy() {

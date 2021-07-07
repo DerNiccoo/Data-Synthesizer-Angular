@@ -13,6 +13,8 @@ export class RequestService {
   private requestModel: Request = new Request();
   private suggestions: SuggestionModel[] = [];
   private evaluations: EvaluationContainer[] = [];
+  private loaded_model: boolean;
+  private loadedPath: string;
 
   setDemo() {
     this.requestModel.path = "asd";
@@ -163,6 +165,22 @@ export class RequestService {
     });
 
     return result;
+  }
+
+  setLoadedModel(loaded: boolean) {
+    this.loaded_model = loaded;
+  }
+
+  getLoadedModel() {
+    return this.loaded_model;
+  }
+
+  setLoadedPath(path: string) {
+    this.loadedPath = path;
+  }
+
+  getLoadedPath() {
+    return this.loadedPath;
   }
 
 }
