@@ -1,9 +1,9 @@
 <div class="db-select">
-  <p>Einfügen des Dateipfades zur Datenbank. Unterstützte Formate: sql, csv</p>
+  <p>Einfügen des Dateipfades zur Datenbank. Unterstützte Formate: sql, csv, json</p>
   <p>Wenn kein Fehler angezeigt wird, aber weiteren Einstellungen nicht angezeigt werden, einfach erneut auf Submit oder die Seite refreshen</p>
   <input type="text" class="form-control" id="pathInput" placeholder="Enter path to file" [(ngModel)]="path">
-  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()" type="submit">Submit</button>
-  <button type="button" class="btn btn-outline-info" (click)="onLoad()" type="submit">Load</button>
+  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()" type="submit">Daten laden</button>
+  <button type="button" class="btn btn-outline-info" (click)="onLoad()" type="submit">Model laden</button>
   <button type="button" class="btn btn-danger" (click)="onKill()" type="submit" style="float: right;">Kill</button>
   <div class="alert alert-danger" *ngIf="errorMsg" style="margin-top: 20px;">
     <h4>Fehler!</h4>

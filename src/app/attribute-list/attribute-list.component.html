@@ -32,39 +32,41 @@
         </mat-form-field>
       </div>
       <div class="row" *ngIf="selectedTable !== undefined">
-        <p>Auswählen der Attribute die generiert werden sollen</p>
-        <form [formGroup]="msAttrForm">
-          <mat-form-field appearance="fill">
-            <mat-label>Generator Attribute</mat-label>
-            <mat-select
-              formControlName="attrType"
-              multiple
-              (selectionChange)="onSelectionChange($event)"
-            >
-              <mat-select-trigger>
-                {{ msAttrForm.controls.attrType.value ? msAttrForm.controls.attrType.value[0] : "" }}
-                <span
-                  *ngIf="msAttrForm.controls.attrType.value?.length > 1"
-                  class="example-additional-selection"
+        <div class="col" style="margin-left: -15px;">
+          <p>Auswählen der Attribute die generiert werden sollen</p>
+          <form [formGroup]="msAttrForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Generator Attribute</mat-label>
+              <mat-select
+                formControlName="attrType"
+                multiple
+                (selectionChange)="onSelectionChange($event)"
+              >
+                <mat-select-trigger>
+                  {{ msAttrForm.controls.attrType.value ? msAttrForm.controls.attrType.value[0] : "" }}
+                  <span
+                    *ngIf="msAttrForm.controls.attrType.value?.length > 1"
+                    class="example-additional-selection"
+                  >
+                    (+{{ msAttrForm.controls.attrType.value.length - 1 }}
+                    {{ msAttrForm.controls.attrType.value?.length === 2 ? "other" : "others" }})
+                  </span>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let attribute of selectedTable.attributes"
+                  [value]="attribute.name"
+                  >{{ attribute.name }}</mat-option
                 >
-                  (+{{ msAttrForm.controls.attrType.value.length - 1 }}
-                  {{ msAttrForm.controls.attrType.value?.length === 2 ? "other" : "others" }})
-                </span>
-              </mat-select-trigger>
-              <mat-option
-                *ngFor="let attribute of selectedTable.attributes"
-                [value]="attribute.name"
-                >{{ attribute.name }}</mat-option
-              >
-              <mat-option
-                #allSelected
-                (click)="toggleAllSelection()"
-                [value]="0"
-                >All Attributes</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
-        </form>
+                <mat-option
+                  #allSelected
+                  (click)="toggleAllSelection()"
+                  [value]="0"
+                  >All Attributes</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </div>
       </div>
     </div>
     <div class="col">
