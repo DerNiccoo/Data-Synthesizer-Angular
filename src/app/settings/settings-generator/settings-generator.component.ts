@@ -8,7 +8,7 @@ import { RequestService } from 'src/app/request.service';
   styleUrls: ['./settings-generator.component.css']
 })
 export class SettingsGeneratorComponent implements OnInit {
-  elements: string [] = ['GaussianCopula', 'TVAE', 'CTGAN', 'CopulaGAN', 'Statistical']
+  elements: string [] = ['GaussianCopula', 'TVAE', 'CTGAN', 'CopulaGAN', 'HMA']
   form = new FormControl();
 
   constructor(private requestService: RequestService) { }
